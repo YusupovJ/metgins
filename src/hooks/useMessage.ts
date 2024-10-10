@@ -1,19 +1,15 @@
 import { MESSAGES_KEY } from "@/lib/constants";
 import { fetchMessages } from "@/services/messageService";
 import { IMessage, TError } from "@/types";
-import { useState } from "react";
 import { useQuery } from "react-query";
 
-export const useMessages = (page: number, id?: string) => {
-  const [totalPages, setTotalPages] = useState(1);
-
+export const useMessages = (id?: string) => {
   return useQuery<IMessage[], TError>(
-    [MESSAGES_KEY, page, id],
+    [MESSAGES_KEY, id],
     async () => {
-      const { data, pagination } = await fetchMessages(page, id);
-      setTotalPages(pagination?.totalPages || 1);
+      const { data } = await fetchMessages(id);
       return data;
     },
-    { enabled: page <= totalPages && !!id }
+    { enabled: !!id }
   );
 };

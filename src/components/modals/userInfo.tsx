@@ -6,7 +6,9 @@ import { toast } from "sonner";
 import { useNavigate } from "react-router-dom";
 import { delLocalStorage } from "@/lib/utils";
 import { useModalStore } from "@/store/modal";
-import { LogOut } from "lucide-react";
+import { Lock, LogOut, UserCircle2 } from "lucide-react";
+import { UserAvatar } from "../userAvatar";
+import { EditProfile } from "../auth/editProfile";
 
 const UserInfo = () => {
   const { user, setIsAuthenticated, setUser } = useAuthStore();
@@ -34,9 +36,16 @@ const UserInfo = () => {
       <ModalHeader>
         <h2>Информация о пользователе</h2>
       </ModalHeader>
-      <ModalContent className="gap-4 flex flex-col items-center">
-        <img src={user.avatar} alt={user.username} className="w-60 h-60 rounded-full object-cover" />
-        <h3 className="text-2xl">{user.username}</h3>
+      <ModalContent>
+        <div className="gap-4 flex items-center mb-10">
+          <UserAvatar src={user.avatar} name={user.username} className="w-24 h-24 rounded-full object-cover text-5xl" />
+          <h3 className="text-2xl break-all">{user.username}</h3>
+        </div>
+
+        <div className="space-y-3">
+          <EditProfile defaultValue={user.username} label="Имя" icon={<UserCircle2 strokeWidth="1" size="32" />} />
+          <EditProfile isPassword label="Пароль" icon={<Lock strokeWidth="1" size="32" />} />
+        </div>
       </ModalContent>
       <ModalFooter>
         <ConfirmButton

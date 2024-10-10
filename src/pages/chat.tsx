@@ -18,8 +18,7 @@ const Chat: FC<Props> = ({ unselected }) => {
   const { id } = useParams();
   const { isAuthenticated, user } = useAuthStore();
   const [newMessages, setNewMessages] = useState<IMessage[]>([]);
-  const [page, setPage] = useState(1);
-  const { data: messages } = useMessages(page, id);
+  const { data: messages } = useMessages(id);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -38,7 +37,6 @@ const Chat: FC<Props> = ({ unselected }) => {
   }, [newMessages]);
 
   const onChatChange = () => {
-    setPage(1);
     setNewMessages([]);
   };
 

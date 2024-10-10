@@ -82,7 +82,7 @@ export const Modal: FC<ModalProps> = ({
 };
 
 export const ModalHeader: React.FC<ModalHeaderProps> = ({ children, className = "" }) => {
-  return <div className={cn("text-lg font-semibold px-4 pt-4", className)}>{children}</div>;
+  return <div className={cn("text-sm md:text-base lg:text-lg font-semibold px-4 pt-4", className)}>{children}</div>;
 };
 
 export const ModalContent: React.FC<ModalContentProps> = ({ children, className = "" }) => {

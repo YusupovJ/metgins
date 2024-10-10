@@ -1,5 +1,3 @@
-import { MESSAGE_LIMIT } from "./constants";
-
 export const baseURL = import.meta.env.VITE_BASEURL;
 
 export const urls = {
@@ -16,7 +14,7 @@ export const urls = {
     getOne: (id?: string) => `/chat/${id}`,
   },
   message: {
-    getAll: (chatId?: string, page?: number) => `/message?chatId=${chatId}&limit=${MESSAGE_LIMIT}&page=${page || 1}`,
+    getAll: (chatId?: string) => `/message?chatId=${chatId}`,
   },
   upload: {
     add: "/upload",

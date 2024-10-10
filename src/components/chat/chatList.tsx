@@ -4,8 +4,8 @@ import { useAuthStore } from "@/store/auth";
 import { IMessage } from "@/types";
 import { Dispatch, FC, SetStateAction } from "react";
 import { Link, useParams } from "react-router-dom";
-import notImage from "../../assets/Modicon_No_Chat_Reports.webp";
 import { LastMessage } from "./lastMessage";
+import { UserAvatar } from "../userAvatar";
 
 interface Props {
   lastNewMessage?: IMessage;
@@ -37,11 +37,7 @@ export const ChatList: FC<Props> = ({ lastNewMessage, className }) => {
               id === chat.id && "bg-muted"
             )}
           >
-            <img
-              src={chat.img || notImage}
-              className="min-w-16 w-16 h-16 rounded-md object-cover transition-all"
-              alt={chat.name}
-            />
+            <UserAvatar src={chat.img} name={chat.name} />
             <div>
               <p className="font-semibold mb-1">{cutTextOnLimit(chat.name, 20)}</p>
               {lastMessage && (

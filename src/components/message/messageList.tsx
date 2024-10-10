@@ -4,6 +4,7 @@ import { IMessage } from "@/types";
 import { useAuthStore } from "@/store/auth";
 import { Message } from "./message";
 import { MessageWrapper } from "./messageWrapper";
+import { UserAvatar } from "../userAvatar";
 
 interface Props {
   messages?: IMessage[];
@@ -25,11 +26,7 @@ export const MessageList: FC<Props> = ({ messages, className }) => {
             data-index={index}
             key={message.id}
           >
-            <img
-              src={message.user.avatar}
-              alt={message.user.username}
-              className="w-12 h-12 object-cover rounded-full"
-            />
+            <UserAvatar src={message.user.avatar} name={message.user.username} />
             <MessageWrapper message={message} isMe={isMe}>
               <Message message={message} />
             </MessageWrapper>

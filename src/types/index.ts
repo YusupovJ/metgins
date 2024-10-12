@@ -123,3 +123,14 @@ export interface IUploadFile {
 }
 
 export type TMessageType = "sticker" | "text" | "image";
+
+export interface IUpdateUserData {
+  username?: string;
+  avatar?: string;
+  password?: string;
+}
+
+export interface IUpdateUser {
+  id: number;
+  user: IUpdateUserData;
+}

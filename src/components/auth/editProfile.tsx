@@ -2,20 +2,40 @@ import { Check, Edit } from "lucide-react";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
 import { FC, ReactNode, useEffect, useRef, useState } from "react";
+import { IUpdateUserData } from "@/types";
+import { useUserUpdate } from "@/hooks/useUser";
+import { useAuthStore } from "@/store/auth";
 
 interface Props {
   defaultValue?: string;
   label?: string;
   isPassword?: boolean;
   icon?: ReactNode;
+  name: keyof IUpdateUserData;
 }
 
-export const EditProfile: FC<Props> = ({ defaultValue, label, isPassword, icon }) => {
+export const EditProfile: FC<Props> = ({ defaultValue, label, isPassword, icon, name }) => {
   const [disabled, setDisabled] = useState(true);
   const ref = useRef<HTMLInputElement>(null);
+  const { mutate: update } = useUserUpdate();
+  const { user } = useAuthStore();
 
   const handler = () => {
-    setDisabled(!disabled);
+    if (!disabled && user) {
+      const value = ref.current?.value;
+
+      update(
+        {
+          id: user?.id,
+          user: { [name]: value },
+        },
+        { onSuccess: () => setDisabled(true) }
+      );
+
+      return;
+    }
+
+    setDisabled(false);
   };
 
   useEffect(() => {

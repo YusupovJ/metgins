@@ -43,8 +43,13 @@ const UserInfo = () => {
         </div>
 
         <div className="space-y-3">
-          <EditProfile defaultValue={user.username} label="Имя" icon={<UserCircle2 strokeWidth="1" size="32" />} />
-          <EditProfile isPassword label="Пароль" icon={<Lock strokeWidth="1" size="32" />} />
+          <EditProfile
+            defaultValue={user.username}
+            label="Имя"
+            icon={<UserCircle2 strokeWidth="1" size="32" />}
+            name="username"
+          />
+          <EditProfile isPassword label="Пароль" icon={<Lock strokeWidth="1" size="32" />} name="password" />
         </div>
       </ModalContent>
       <ModalFooter>

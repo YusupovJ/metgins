@@ -20,4 +20,8 @@ export const urls = {
     add: "/upload",
     multi: "/upload/multiple",
   },
+  user: {
+    getAll: "/user",
+    update: (id: number) => `/user/${id}`,
+  },
 };

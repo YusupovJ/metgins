@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
 import { baseURL, urls } from "@/lib/urls";
-import { IApiReponse, ILoginData, IRefreshData, IRegisterData, ITokens } from "@/types";
+import { IApiReponse, ILoginData, IMe, IRefreshData, IRegisterData, ITokens } from "@/types";
 import axios from "axios";
 
 export const fetchLogin = async (loginData: ILoginData) => {
@@ -20,4 +20,9 @@ export const fetchRefresh = async (refreshData: IRefreshData) => {
 
 export const fetchLogout = async () => {
   await api.post(urls.auth.logout);
+};
+
+export const fetchMe = async () => {
+  const { data } = await api.get<IMe>(urls.auth.me);
+  return data;
 };

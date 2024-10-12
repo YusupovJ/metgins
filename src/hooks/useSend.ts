@@ -26,17 +26,19 @@ export const useSend = () => {
     }
   };
 
-  const sendImage = async (files: FileList) => {
+  const sendImage = async (files: FileList | null) => {
     try {
-      const images = await multiFileUpload(files);
-      const urls = images.map((image) => image.url);
+      if (files) {
+        const images = await multiFileUpload(files);
+        const urls = images.map((image) => image.url);
 
-      socket.emit("image", {
-        chatId: id,
-        userId: userId,
-        type: "image",
-        images: urls,
-      });
+        socket.emit("image", {
+          chatId: id,
+          userId: userId,
+          type: "image",
+          images: urls,
+        });
+      }
     } catch (error) {
       toast.error("Не удалость отправить изображение");
     }

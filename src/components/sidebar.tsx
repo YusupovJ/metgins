@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { FC } from "react";
-import Logo from "@/assets/logo.svg?react";
 import { User, MessageCirclePlus } from "lucide-react";
 import { useModalStore } from "@/store/modal";
 import { Tooltip } from "@/components/ui/tooltip";
@@ -16,8 +15,7 @@ export const Sidebar: FC<Props> = ({ className }) => {
   return (
     <div className={cn("flex flex-col justify-between py-7", className)}>
       <div className="flex flex-col items-center px-3">
-        <Logo className="fill-accent-foreground w-8 h-8" />
-        <h2 className="text-xs mt-2">ChatCraft</h2>
+        <h2 className="text-lg mt-2">Logo</h2>
       </div>
 
       <div className="flex flex-col items-center gap-2">

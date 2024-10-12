@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { ChatInfo } from "../components/chat/chatInfo";
 import { MessageList } from "../components/message/messageList";
-import { WriteMessage } from "../components/chat/writeMessage";
+import { WriteMessage } from "../components/message/writeMessage";
 import { FC, useEffect, useState } from "react";
 import { useAuthStore } from "@/store/auth";
 import { IMessage } from "@/types";

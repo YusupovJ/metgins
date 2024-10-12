@@ -7,8 +7,8 @@ import { useNavigate } from "react-router-dom";
 import { delLocalStorage } from "@/lib/utils";
 import { useModalStore } from "@/store/modal";
 import { Lock, LogOut, UserCircle2 } from "lucide-react";
-import { UserAvatar } from "../userAvatar";
 import { EditProfile } from "../auth/editProfile";
+import { EditAvatar } from "../auth/editAvatar";
 
 const UserInfo = () => {
   const { user, setIsAuthenticated, setUser } = useAuthStore();
@@ -38,7 +38,7 @@ const UserInfo = () => {
       </ModalHeader>
       <ModalContent>
         <div className="gap-4 flex items-center mb-10">
-          <UserAvatar src={user.avatar} name={user.username} className="w-24 h-24 rounded-full object-cover text-5xl" />
+          <EditAvatar user={user} />
           <h3 className="text-2xl break-all">{user.username}</h3>
         </div>
 

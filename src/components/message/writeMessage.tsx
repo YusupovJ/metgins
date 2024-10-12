@@ -32,8 +32,7 @@ export const WriteMessage: FC<IProps> = ({ setNewMessages }) => {
   }, [socket, id, userId]);
 
   const onFileSelect = (e: ChangeEvent<HTMLInputElement>) => {
-    const images = e.target.files!;
-    sendImage(images);
+    sendImage(e.target.files);
   };
 
   return (

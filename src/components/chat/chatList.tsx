@@ -19,7 +19,7 @@ export const ChatList: FC<Props> = ({ lastNewMessage, className }) => {
   const { data: chatList } = useChatList();
 
   if (!chatList?.length) {
-    return <h4 className={cn("text-muted-foreground text-lg text-center mt-5", className)}>У вас нету чатов</h4>;
+    return <h4 className={cn("text-muted-foreground text-lg text-center mt-10", className)}>У вас нету чатов</h4>;
   }
 
   return (
@@ -42,7 +42,7 @@ export const ChatList: FC<Props> = ({ lastNewMessage, className }) => {
               <p className="font-semibold mb-1">{cutTextOnLimit(chat.name, 20)}</p>
               {lastMessage && (
                 <p className="text-muted-foreground text-xs mt-2 flex item-center">
-                  {isMe ? "Вы" : lastMessage?.user?.username}:{" "}
+                  {isMe ? "Вы:" : chat.type === "personal" ? "" : `${lastMessage?.user?.username}:`}{" "}
                   <LastMessage type={lastMessage.type} content={lastMessage.content} />
                 </p>
               )}

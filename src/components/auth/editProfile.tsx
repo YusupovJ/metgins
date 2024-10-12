@@ -5,6 +5,7 @@ import { FC, ReactNode, useEffect, useRef, useState } from "react";
 import { IUpdateUserData } from "@/types";
 import { useUserUpdate } from "@/hooks/useUser";
 import { useAuthStore } from "@/store/auth";
+import { useMe } from "@/hooks/useAuth";
 
 interface Props {
   defaultValue?: string;
@@ -19,6 +20,7 @@ export const EditProfile: FC<Props> = ({ defaultValue, label, isPassword, icon, 
   const ref = useRef<HTMLInputElement>(null);
   const { mutate: update } = useUserUpdate();
   const { user } = useAuthStore();
+  const { refetch } = useMe();
 
   const handler = () => {
     if (!disabled && user) {
@@ -29,7 +31,12 @@ export const EditProfile: FC<Props> = ({ defaultValue, label, isPassword, icon, 
           id: user?.id,
           user: { [name]: value },
         },
-        { onSuccess: () => setDisabled(true) }
+        {
+          onSuccess: () => {
+            setDisabled(true);
+            refetch();
+          },
+        }
       );
 
       return;

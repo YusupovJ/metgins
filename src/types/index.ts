@@ -94,6 +94,7 @@ export interface IChat {
   id: string;
   name: string;
   img: string;
+  type: "personal" | "group";
   messages: IMessage[];
   created_at: string;
   updated_at: string;

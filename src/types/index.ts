@@ -41,6 +41,7 @@ export interface IRoutes {
 export interface IMe {
   username: string;
   avatar: string;
+  role: "admin" | "user";
   id: number;
 }
 
@@ -111,8 +112,10 @@ export interface IMessage {
 }
 
 export interface ICreateChat {
-  name: string;
-  img: string;
+  name?: string;
+  img?: string;
+  type?: "personal" | "group";
+  companionId?: number;
 }
 
 export interface IUploadFile {

@@ -1,6 +1,6 @@
 import { api } from "@/lib/api";
 import { urls } from "@/lib/urls";
-import { IChat } from "@/types";
+import { IChat, ICreateChat } from "@/types";
 
 export const fetchOneChat = async (id?: string) => {
   const { data } = await api.get<IChat>(urls.chat.getOne(id));
@@ -12,7 +12,7 @@ export const fetchChatList = async () => {
   return data;
 };
 
-export const fetchChatCreate = async ({ name, img }: { name: string; img: string }) => {
-  const { data } = await api.post<IChat>(urls.chat.create, { name, img });
+export const fetchChatCreate = async (body: ICreateChat) => {
+  const { data } = await api.post<IChat>(urls.chat.create, body);
   return data;
 };

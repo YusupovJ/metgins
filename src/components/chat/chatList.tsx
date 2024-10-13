@@ -1,21 +1,16 @@
 import { useChatList } from "@/hooks/useChat";
 import { cn, cutTextOnLimit } from "@/lib/utils";
-import { useAuthStore } from "@/store/auth";
-import { IMessage } from "@/types";
 import { Dispatch, FC, SetStateAction } from "react";
 import { Link, useParams } from "react-router-dom";
-import { LastMessage } from "./lastMessage";
 import { UserAvatar } from "../userAvatar";
 
 interface Props {
-  lastNewMessage?: IMessage;
   className?: string;
   setSize?: Dispatch<SetStateAction<boolean>>;
 }
 
-export const ChatList: FC<Props> = ({ lastNewMessage, className }) => {
+export const ChatList: FC<Props> = ({ className }) => {
   const { id } = useParams();
-  const { user } = useAuthStore();
   const { data: chatList } = useChatList();
 
   if (!chatList?.length) {
@@ -25,9 +20,6 @@ export const ChatList: FC<Props> = ({ lastNewMessage, className }) => {
   return (
     <div className={cn("flex flex-col overflow-auto", className)}>
       {chatList.map((chat) => {
-        const lastMessage = lastNewMessage?.chat.id === chat.id ? lastNewMessage : chat.messages[0];
-        const isMe = user?.id === lastMessage?.user?.id;
-
         return (
           <Link
             to={`/chat/${chat.id}`}
@@ -38,15 +30,7 @@ export const ChatList: FC<Props> = ({ lastNewMessage, className }) => {
             )}
           >
             <UserAvatar src={chat.img} name={chat.name} />
-            <div>
-              <p className="font-semibold mb-1">{cutTextOnLimit(chat.name, 20)}</p>
-              {lastMessage && (
-                <p className="text-muted-foreground text-xs mt-2 flex item-center">
-                  {isMe ? "Вы:" : chat.type === "personal" ? "" : `${lastMessage?.user?.username}:`}{" "}
-                  <LastMessage type={lastMessage.type} content={lastMessage.content} />
-                </p>
-              )}
-            </div>
+            <p className="font-semibold mb-1">{cutTextOnLimit(chat.name, 20)}</p>
           </Link>
         );
       })}

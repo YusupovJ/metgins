@@ -1,4 +1,4 @@
-import { Auth, Chat, NotFound } from "@/pages";
+import { Auth, Chat, NotFound, Users } from "@/pages";
 import { IRoutes } from "@/types";
 
 export const routes: IRoutes[] = [
@@ -21,5 +21,10 @@ export const routes: IRoutes[] = [
     id: 4,
     path: "/chat/:id",
     component: <Chat />,
+  },
+  {
+    id: 4,
+    path: "/users",
+    component: <Users />,
   },
 ];

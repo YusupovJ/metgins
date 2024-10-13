@@ -21,7 +21,8 @@ export const urls = {
     multi: "/upload/multiple",
   },
   user: {
-    getAll: "/user",
+    getAll: (page?: string | null) => `/user?page=${page || 1}&limit=10`,
     update: (id: number) => `/user/${id}`,
+    getFriends: (value: string) => `/user/friend?search=${value}`,
   },
 };

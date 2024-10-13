@@ -13,3 +13,4 @@ export const CHAT_CREATE_KEY = "chat-create";
 
 export const USER_KEY = "users";
 export const USER_UPDATE_KEY = "users-update";
+export const FRIEND_KEY = "friends";

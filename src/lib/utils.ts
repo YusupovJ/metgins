@@ -103,3 +103,15 @@ export const cutTextOnLimit = (content: string, limit: number = 30) => {
   }
   return content;
 };
+
+/* Others */
+
+export const range = (length: number) => {
+  const arr = [];
+
+  for (let i = 1; i <= length; i++) {
+    arr.push(i);
+  }
+
+  return arr;
+};

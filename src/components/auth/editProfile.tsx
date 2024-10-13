@@ -23,9 +23,8 @@ export const EditProfile: FC<Props> = ({ defaultValue, label, isPassword, icon, 
   const { refetch } = useMe();
 
   const handler = () => {
-    if (!disabled && user) {
-      const value = ref.current?.value;
-
+    const value = ref.current?.value;
+    if (!disabled && user && value) {
       update(
         {
           id: user?.id,

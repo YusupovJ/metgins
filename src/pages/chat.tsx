@@ -9,6 +9,7 @@ import { ChatList } from "../components/chat/chatList";
 import { cn, isInDeep, scrollToBottom } from "@/lib/utils";
 import { useMessages } from "@/hooks/useMessage";
 import { Sidebar } from "@/components/sidebar";
+import { Search } from "@/components/chat/search";
 
 interface Props {
   unselected?: boolean;
@@ -52,7 +53,8 @@ const Chat: FC<Props> = ({ unselected }) => {
       >
         <Sidebar className="shrink-0 grow-0 basis-20 bg-accent" />
         <div className="flex flex-col w-full">
-          <ChatList className="grow" lastNewMessage={newMessages[newMessages.length - 1]} />
+          <Search />
+          <ChatList className="grow" />
         </div>
       </aside>
       <main className={cn("bg-muted relative grow", unselected && "flex items-center justify-center min-h-[100dvh]")}>
